@@ -18,4 +18,7 @@ public class LoginPage {
     @FindBy(id = "btnSubmit")
     public WebElement loginButton;
 
+    @FindBy(xpath = "//h2[@class='mb-4']")
+    public WebElement loginText;
+
 }
