@@ -21,4 +21,7 @@ public class LoginPage {
     @FindBy(xpath = "//h2[@class='mb-4']")
     public WebElement loginText;
 
+    @FindBy(xpath = "//*[.='Try again please']")
+    public WebElement tryAgainText;
+
 }

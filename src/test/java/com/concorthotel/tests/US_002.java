@@ -26,5 +26,33 @@ public class US_002 {
         loginPage.loginButton.click();
         Assert.assertTrue(defaultPage.managerText.isDisplayed());
         Assert.assertTrue(defaultPage.systemManagementText.isDisplayed());
+        Driver.closeDriver();
+    }
+    @Test
+    public void loginPageNegativeTest1(){
+        mainPageLoginLinkTest();
+        loginPage.userNameTextBox.sendKeys(ConfigReader.getProperty("managerUserName"));
+        loginPage.passwordTextBox.sendKeys(ConfigReader.getProperty("invalidManagerPassword"));
+        loginPage.loginButton.click();
+        Assert.assertTrue(loginPage.tryAgainText.isDisplayed());
+        Driver.closeDriver();
+    }
+    @Test
+    public void loginPageNegativeTest2(){
+        mainPageLoginLinkTest();
+        loginPage.userNameTextBox.sendKeys(ConfigReader.getProperty("invalidManagerUserName"));
+        loginPage.passwordTextBox.sendKeys(ConfigReader.getProperty("managerPassword"));
+        loginPage.loginButton.click();
+        Assert.assertTrue(loginPage.tryAgainText.isDisplayed());
+        Driver.closeDriver();
+    }
+    @Test
+    public void loginPageNegativeTest3(){
+        mainPageLoginLinkTest();
+        loginPage.userNameTextBox.sendKeys(ConfigReader.getProperty("invalidManagerUserName"));
+        loginPage.passwordTextBox.sendKeys(ConfigReader.getProperty("invalidManagerPassword"));
+        loginPage.loginButton.click();
+        Assert.assertTrue(loginPage.tryAgainText.isDisplayed());
+        Driver.closeDriver();
     }
 }
