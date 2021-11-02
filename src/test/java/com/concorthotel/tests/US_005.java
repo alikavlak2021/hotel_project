@@ -3,8 +3,10 @@ package com.concorthotel.tests;
 import com.concorthotel.pages.*;
 import com.concorthotel.utilities.ConfigReader;
 import com.concorthotel.utilities.Driver;
+import com.concorthotel.utilities.ReusableMethods;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -26,20 +28,14 @@ public class US_005 {
         Assert.assertTrue(defaultPage.systemManagementText.isDisplayed());
     }
     @Test
-    public void updateHotelInfoTest(){
+    public void updateHotelInfoTest() throws InterruptedException {
         defaultPage.hotelManagementLink.click();
         defaultPage.hotelListLink.click();
         Assert.assertTrue(hotelListPage.listOfHotelsText.isDisplayed());
         hotelListPage.detailsButton.click();
+        ReusableMethods.switchToWindow("Admin - Edit Hotel");
         Assert.assertTrue(editHotelPage.editHotelText.isDisplayed());
-
-    }
-    @Test
-    public void editHotelPageTest() throws InterruptedException {
-        updateHotelInfoTest();
-        Thread.sleep(2000);
         editHotelPage.codeTextBox.clear();
-        Thread.sleep(2000);
         editHotelPage.codeTextBox.sendKeys("1234");
         editHotelPage.nameTextBox.clear();
         editHotelPage.nameTextBox.sendKeys("Hilton");
@@ -47,11 +43,24 @@ public class US_005 {
         editHotelPage.addressTextBox.sendKeys("Norway");
         editHotelPage.phoneTextBox.clear();
         editHotelPage.phoneTextBox.sendKeys("+47-456-32-211");
+        Thread.sleep(1000);
         editHotelPage.emailTextBox.clear();
         editHotelPage.emailTextBox.sendKeys("ece@gmail.com");
         Select select = new Select(editHotelPage.hotelTypeDropDown);
         select.selectByValue("1");
         editHotelPage.saveButton.click();
+        Thread.sleep(1000);
+        Assert.assertTrue(editHotelPage.successText.isDisplayed());
+        editHotelPage.okButton.click();
+        editHotelPage.deleteButton.click();
+        Thread.sleep(1000);
+        Assert.assertTrue(editHotelPage.wouldYouLikeToContinueText.isDisplayed());
+        editHotelPage.wouldYouLikeToContinueOKButton.click();
 
     }
+    @AfterMethod
+    public void tearDown(){
+        Driver.closeDriver();
+    }
+
 }

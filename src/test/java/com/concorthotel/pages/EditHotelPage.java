@@ -24,6 +24,26 @@ public class EditHotelPage {
     @FindBy(xpath = "//input[@id='Phone']")
     public WebElement phoneTextBox;
 
+    @FindBy(xpath = "//div[@class='bootbox-body']")
+    public WebElement successText;
+
+    @FindBy(xpath = "(//button[@type='button'])[6]")
+    public WebElement okButton;
+
+    @FindBy(xpath = "//button[@type='submit']")
+    public WebElement deleteButton;
+
+    @FindBy(xpath = "//div[@class='bootbox-body']")
+    public WebElement wouldYouLikeToContinueText;
+
+    @FindBy(xpath = "(//button[@type='button'])[7]")
+    public WebElement wouldYouLikeToContinueOKButton;
+
+
+
+
+
+
     @FindBy(xpath = "//input[@id='Email']")
     public WebElement emailTextBox;
 
